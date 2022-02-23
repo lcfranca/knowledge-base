@@ -1,2 +1,4 @@
-# Learning-R
-Set of files and scripts used to learn R
+# Using R as a calculator
+
+
+Second assessment list of the Computing in Statistics discipline (UNB), the exercise is in the files "Lista_2". 
