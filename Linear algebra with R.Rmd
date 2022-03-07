@@ -1,0 +1,385 @@
+---
+title: "Linear Algebra with R"
+author: "Lucas C. França"
+date: "`r Sys.Date()`"
+output:
+ 
+  pdf_document: 
+    toc: yes
+    number_sections: yes
+    toc_depth: 6
+---
+
+
+
+```{r setup, include=FALSE, message= F, warning= F}
+knitr::opts_chunk$set(echo = TRUE)
+if (!require("pacman")) install.packages("pacman")
+pacman::p_load("tinytex", "tidyverse", "xtable", "knitr")
+
+```
+
+\newpage
+# Systems of Linear Equations and Matrices
+
+
+## Matrix and Vector
+
+In this section we discuss matrices and vectors, and then we discuss hoe we can create a matrix and a vector in the `R` programming environment. 
+
+**Definition 1** _For positive integers n, an n-**dimensional vector** is a 1-dimensional n array._
+
+In `R`, we can use `c()` function to create a vector. For example, 
+
+```{r}
+v <- c(907,220,625,502)
+v
+```
+
+In `R`, using ":" you can easily create a vector of a sequence of numbers. In this example, you can type
+
+```{r}
+v <- 2:6
+v
+
+```
+
+
+**Definition 2** _For positive integers m, n, an m x n **matrix** is a 2-dimensional m x n array._
+
+In `R`we can create a matrix by calling the `matrix()` function. For example,
+
+```{r}
+M <- matrix(c(1,1,1,2,1,3,1,4),nrow = 2, ncol= 4)
+M
+
+```
+Here the `c()` function stores elements in the matrix. The order of the elements in `c()` function matters. As the default setting, it starts from the first element of the first column vector to the last element of the first column vector. Then it goes from the first element of the second column vector to the last element of the second column vector, and so on. "nrow" defines the number of row vectors and "ncol" defines the number of column vectors. For this example the number of row vectors is 2 and the number of column vectors is 4, so we set "nrow=2" and "ncol=4".
+
+**Definition 3** Suppose we have an $m x n$ matrix, then $m x 1$ matrices are called **collumn vectors** of the matrix. Also $1 x n$ matrices are called **row vectors** of the matrix. 
+
+
+Now suppose we want to have just the first row vector of this matrix M, then we type:
+
+
+```{r}
+M[1,]
+
+```
+Similarly, if we want to have the second column of the matrix M, then we type
+
+```{r}
+M[,2]
+```
+Noe we show another way to make a matrix from combining row vectors or column vectors. First, we show how to create a matrix by combining vectors with the function `rbind()`. Let us define r1 and r2 as the first row vector and the second row vector of the matrix. in `R` we can define as
+
+```{r}
+r1 <- c(1,1,1,1) 
+r2 <- c(1,2,3,4)
+```
+
+Then we use the `rbind()` function to create a matrix M as
+
+```{r}
+M <- rbind(r1,r2)
+M
+```
+
+To create a matrix from column vectors in `R` we can use the function `cbind()`. For this example we first create four column vectors c1,c2,c3 and c4 with a function `c()`. 
+
+
+```{r}
+c1 <- c(1,1)
+c2 <- c(1,2)
+c3 <- c(1,3)
+c4 <- c(1,4)
+```
+
+Then you use the `cbind()` function to create a matrix as follows:
+
+```{r}
+M <- cbind(c1,c2,c3,c4)
+M
+```
+If you want to extract the element in the 2th row and the 3th column, you can do:
+
+```{r}
+M[2,3]
+```
+
+Using the `cbind()` function you can also create a new matrix. For example, let us pick the 2th and 4th columns if the matrix. Then let us make a new matrix called M2.
+
+```{r}
+
+M2 <- cbind(M[,2], M[,4])
+M2
+
+```
+If we want to know the number of row vectors and the number of column
+vectors of a matrix, you can use the `dim()` function in `R`.
+
+```{r}
+dim(M)
+```
+The first output of the `dim()` function is the number of row vectors and the second output of the dim() function is the number of column vectors.
+
+**Definition 4** A **zero vector** or a **null vector** is an n-dimensional vector with all zeros as its elements. 
+
+In `R` you can create the 5-dimensional zero vector using the `rep()` function. The first argument is the value you want to assign as its element and the second argument is the dimension of the vector. The output from `R`is as follows:
+
+
+
+```{r}
+
+rep(0,5)
+
+```
+
+**Definition 5** Suppose we have an $m x n$ matrix. If $m = n$, then we call this matrix a **square matrix**. 
+
+For example, a $4 x 4$ zero square matrix: 
+
+```{r}
+
+M <- matrix(rep(0,16), ncol =  4)
+M
+```
+Definition 6 The identity matrix, $In$, of size $n$ is an $n × n$ square matrix such that all elements in the ith row and ith column equal 1 for all $i$ from 1 to $n$, and otherwise all 0.
+
+To create the identity matrix of size $n$ in `R` you can use the `diag()` function. If you type `diag(n), then you create the identity matrix of size $n$.
+
+
+```{r}
+diag(3)
+```
+
+# Matrix Arithmetic
+
+## 2.2 Matrix Operations
+
+Matrix operations are the foundation for linear algebra and important for solving a system of linear equations as well as linear transformations.
+
+### Matrix addition
+
+First we define **matrix addition**. In order to do so, the number of row vectors of $A$ and $B$ have to be the same and the number of column vectors $A$ and $B$ have to be the same.
+
+
+In `R`, we do the following: First we define two vectors:
+
+```{r}
+v1 <- c(2, -1, 3)
+v2 <- c(-1, 0, 4)
+```
+
+Then the sum of these vectors is
+
+```{r}
+v1 + v2
+```
+With matrices: 
+
+
+\begin{equation*}
+A = \left(
+```{r echo=F, results="asis"}
+A <- matrix(c(3, 0, -5, -1, -3, 4), nrow = 2, ncol = 3, byrow = TRUE)
+B <- matrix(c(-5, 5, 2, 1, -2, 0), nrow = 2, ncol = 3, byrow = TRUE)
+
+
+xtable::xtableMatharray(A)
+```
+\right).
+\end{equation*}
+
+\begin{equation*}
+B = \left(
+```{r echo=F, results="asis"}
+xtable::xtableMatharray(B)
+```
+\right).
+\end{equation*}
+
+In `R`:
+
+
+```{r, eval = F}
+A <- matrix(c(3, 0, -5, -1, -3, 4), nrow = 2, ncol = 3, byrow = TRUE)
+B <- matrix(c(-5, 5, 2, 1, -2, 0), nrow = 2, ncol = 3, byrow = TRUE)
+A+B
+```
+
+Then `R` outputs, 
+
+\begin{equation*}
+A + B = \left(
+```{r echo=F, results="asis"}
+xtable::xtableMatharray(A + B)
+```
+\right).
+\end{equation*}
+
+### Matrix multiplication
+
+#### Scalar Multiplication
+
+**Definition** Suppose we have a real number $c$ and an $A = m x n$ matrix, the **scalar multiplication** of $c$ to $A$ is each entry in the matrix multiplied by the given scalar.
+
+In `R`, we can do the scalar multiplication as follows: First we define a matrix A:
+
+```{r}
+A <- matrix(c(3, 0, -5, -1, -3, 4), nrow = 2, ncol = 3, byrow = TRUE)
+A
+```
+
+Then we can do the scalar multiplication in `R`as
+
+```{r}
+-3 * A
+
+```
+#### Multiplication of matrices
+
+When we multiply two matrices, we have to be very careful of their dimension. The number of column vectors of the left matrix has to be the same as the number of row vectors of the right matrix. The multiplication of an $m × n$ matrix and an $n × k$ matrix is an $m × k$ matrix.
+
+##### Dot Product
+
+The **dot product** is an algebraic operation that takes two equal-length sequences of numbers (usually coordinate vectors), and returns a single number. In Eucledean geometry, the dot product of the Cartesian coordinates of two vectors is widely used. It is often called "the" **inner product** (or rarely **projection product**) of Euclidean space. 
+
+In `R`, first, we define these vectors
+
+```{r}
+v1 <- c(2, -1, 3)
+v2 <- c(-1, 0, 4)
+
+```
+
+Then the dot product of these vectors in `R`is
+
+```{r}
+v1 %*% v2
+
+```
+
+##### Dot Product of two matrices
+
+The multiplication of two matrices can be seen as a generalization of this dot product of two vectors. 
+
+In`R`we do the following: First wr define two matrices:
+
+```{r}
+A <- matrix(c(3, 0, -5, -1, -3, 4), nrow = 2, ncol = 3, byrow = TRUE)
+B <- matrix(c(-5, 5, 2, 1, -2, 0), nrow = 3, ncol = 2, byrow = TRUE)
+
+```
+
+The matrices are:
+
+\begin{equation*}
+A = \left(
+```{r echo=F, results="asis"}
+xtable::xtableMatharray(A)
+```
+\right).
+\end{equation*}
+
+and, 
+
+\begin{equation*}
+B = \left(
+```{r echo=F, results="asis"}
+xtable::xtableMatharray(B)
+```
+\right).
+\end{equation*}
+
+Then the for product of these matrices can be computed by
+
+```{r}
+A %*% B
+
+```
+
+##### Transpose 
+
+One of the important operations in matrices is called the **transpose** of a matrix. With this operation, we can be more flexible with other matrix operations. 
+
+**Example** Suppose we have a 2x3 matrix:
+
+\begin{equation*}
+A = \left(
+```{r echo=F, results="asis"}
+x <- matrix(c(4, -1, -5, 0, 1, -2), ncol = 3)
+xtable::xtableMatharray(x)
+```
+\right).
+\end{equation*}
+
+The transpose of the matrix $A$ is a $3 x 2$ matrix
+
+\begin{equation*}
+A^T = \left(
+```{r echo=F, results="asis"}
+xt <- matrix(c(4, -1, -5, 0, 1, -2), nrow = 3)
+xtable::xtableMatharray(xt)
+```
+\right).
+\end{equation*}
+
+We can use `R`to compute the transpose of a matrix using the `t()` function. With the matrix $A$ from the example above, we first create a matrix using the `matrix()` function:
+
+```{r}
+A <- matrix(c(4, -1, -5, 0, 1, -2), 2, 3, byrow = TRUE)
+```
+
+Then, we type in `R`
+
+```{r}
+
+t(A)
+
+```
+
+
+# Determinants
+
+A **determinant** of a square matrix is a numerical summary of the matrix. This can be used for computing the inverse of a matrix if it is invertible and can also be used for solving a system of linear equations. In particular, the determinante is nonzero if and only if the matrix is invertible and the linear map represented by the matrix is an isomorphism. A matrix is often used to represent the coefficients in a system of linear quations, and determinants can be used to solve these equations (Cramer's rule), although other methods of solution are computationally much more efficient. 
+
+In `R` we can use the `det()` function to compute the determinant of a square matrix.
+
+First we define a matrix in R:
+
+```{r}
+A <- matrix(c(-2, 4, -5, -1, -1, 1, -5, 0, -3), nrow = 3, ncol = 3)
+A
+```
+
+Then we use the `det()`function:
+
+```{r}
+
+det(A)
+```
+
+# Vector Spaces
+
+A vector space is a foundation in many areas. A **vector space** is a set of objects called vectors, which may be added together and multiplied ("scaled") by numbers called **scalars**. The operations of vector addition and scalar multiplication must satisfy certain requirements, called vector axioms. 
+
+**Definition 1** A **Scalar multiplication** is an operation such that $c * v$, where $c$ is a scalar and $v$ is an element of a set $V$. 
+
+**Definition 2** A **vector space $V$** is a non-empy set with two operations: **addition** and **scalar multiplication** such that the _vector axioms_ are true.
+
+
+
+## Inner Product Space
+
+An inner product is an operation which defines a vector space. This operation is key to conduct any analysis in a vector space including a Euclidean space. This defines a magnitude or length of a vector in a vector space as well as the angle between two vectors in a vector space. 
+
+# Eigen Values and Eigen Vectors
+# Linear Repression
+# Linear Programming
+# Network Analysis
+
+
+\newpage
+# References
+1. Yoshida, R. (2021). Linear Algebra and Its Applications with R (1st ed.). Chapman and Hall/CRC. https://doi.org/10.1201/9781003042259
