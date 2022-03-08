@@ -4,10 +4,10 @@
 
 <br>
 
-[Exercise List](Lista_2.pdf)
+[Exercise List](Linear-algebra-wth-R-Exercises.pdf)
 
 <br>
 
-[Exersice List Resolution](Lista 2 - Resolução.pdf)
+[Exersice List Resolution](Linear-algebra-with-R-Resolution.pdf)
 
 <br>
