@@ -10,3 +10,4 @@
 
 [Exersice List Resolution](Lista 2 - Resolução.pdf)
 
+<br>
