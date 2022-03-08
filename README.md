@@ -4,10 +4,10 @@
 
 <br>
 
-[Exercise List](Linear-algebra-wth-R-Exercises.pdf)
+[Exercise List (pt-br)](Linear-algebra-wth-R-Exercises.pdf)
 
 <br>
 
-[Exersice List Resolution](Linear-algebra-with-R-Resolution.pdf)
+[Exersice List Resolution (pt-br)](Linear-algebra-with-R-Resolution.pdf)
 
 <br>
