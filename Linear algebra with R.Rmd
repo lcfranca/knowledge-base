@@ -15,7 +15,7 @@ output:
 ```{r setup, include=FALSE, message= F, warning= F}
 knitr::opts_chunk$set(echo = TRUE)
 if (!require("pacman")) install.packages("pacman")
-pacman::p_load("tinytex", "tidyverse", "xtable", "knitr")
+pacman::p_load("tinytex", "tidyverse", "xtable", "knitr", "matlib", "MASS")
 
 ```
 
@@ -47,7 +47,7 @@ v
 
 **Definition 2** _For positive integers m, n, an m x n **matrix** is a 2-dimensional m x n array._
 
-In `R`we can create a matrix by calling the `matrix()` function. For example,
+In `R` we can create a matrix by calling the `matrix()` function. For example,
 
 ```{r}
 M <- matrix(c(1,1,1,2,1,3,1,4),nrow = 2, ncol= 4)
@@ -144,7 +144,7 @@ For example, a $4 x 4$ zero square matrix:
 M <- matrix(rep(0,16), ncol =  4)
 M
 ```
-Definition 6 The identity matrix, $In$, of size $n$ is an $n × n$ square matrix such that all elements in the ith row and ith column equal 1 for all $i$ from 1 to $n$, and otherwise all 0.
+**Definition 6** The identity matrix, $In$, of size $n$ is an $n × n$ square matrix such that all elements in the ith row and ith column equal 1 for all $i$ from 1 to $n$, and otherwise all 0.
 
 To create the identity matrix of size $n$ in `R` you can use the `diag()` function. If you type `diag(n), then you create the identity matrix of size $n$.
 
@@ -338,7 +338,51 @@ Then, we type in `R`
 t(A)
 
 ```
+##### Inverse
 
+One of the most important concepts is the **inverse** of a matrix. This concept is very important for solving a system of linear equations.
+
+**Definition** Suppose `A` is a square matrix, _i.e._, an $m x m$ matrix. Then the **inverse** of a matrix $A$ is an $m x m$ matrix $A^{-1}$ such that
+
+$$
+
+A \ . \  A^{-1} = \ A^{-1} \ . \ A = Im
+
+$$
+Where $Im$ is the identity matrix of size m. If a matrix $A$ has the inverse, then we say a matrix $A$ is invertible. 
+
+In `R`, if we want to compute the inverse of a matrix we can use the `ìnv()` function from the `matlab` package. For example, if we have a matrix 
+
+\begin{equation*}
+A = \left(
+```{r echo=F, results="asis"}
+x <- matrix(c(1,-2,-1,2,3,2,3,-2,1), nrow = 3, ncol = 3)
+xtable::xtableMatharray(x)
+```
+\right).
+\end{equation*}
+
+then we can type:
+
+```{r}
+library(matlib)
+A <- matrix(c(1,-2,-1,2,3,2,3,-2,1), nrow = 3, ncol = 3)
+matlib::inv(A)
+```
+
+If we want to see the output in terms of rational numbers, then we can use the `fractions()`function from the `MAAS`package: 
+
+```{r}
+library(MASS)
+MASS::fractions(inv(A))
+```
+In `R` we can also use the `solve()` function to find the inverse of a matrix instead of the `ìnv()` function. For example: 
+
+
+```{r}
+A <- matrix(c(1,-2,-1,2,3,2,3,-2,1), nrow = 3, ncol = 3)
+solve(A)
+```
 
 # Determinants
 

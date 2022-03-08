@@ -1,0 +1,259 @@
+---
+title: "Using-R-as-a-calculator"
+author: "Lucas C. França"
+date: "`r Sys.Date()`"
+output: 
+  pdf_document: 
+    toc: yes
+    number_sections: yes
+
+---
+
+# Usando o R como calculadora
+
+```{r setup, include=FALSE, message= F, warning= F}
+knitr::opts_chunk$set(echo = TRUE)
+if (!require("pacman")) install.packages("pacman")
+pacman::p_load("tinytex", "tidyverse", "xtable", "knitr")
+
+```
+
+## Questão 1
+
+Considere a matriz
+\begin{equation*}
+A = \left(
+```{r echo=F, results="asis"}
+x <- matrix(c(13,7,8,14,5,2,3,9,10,15,16,4,6,12,1,11), ncol= 4, byrow = T)
+xtable::xtableMatharray(x)
+```
+\right).
+\end{equation*}
+
+a) Use a função `matrix` do `R` para criar um objeto R contendo a matriz $A$.
+
+\textcolor{blue}{A matriz pode ser computada através da seguinte linha código:}
+
+```{r}
+
+A <- matrix(c(13,7,8,14,5,2,3,9,10,15,16,4,6,12,1,11), ncol= 4, byrow = T)
+
+```
+
+\textcolor{blue}{Que traz como resultado:}
+
+\begin{equation*}
+A = \left(
+```{r echo=F, results="asis"}
+x <- matrix(c(13,7,8,14,5,2,3,9,10,15,16,4,6,12,1,11), ncol= 4, byrow = T)
+xtable::xtableMatharray(x)
+```
+\right).
+\end{equation*}
+
+
+b) Substitua o elemento $A_{2, 3}$ de $A$ por 10.
+
+\textcolor{blue}{Podemos computar o elemento $10$ na posição do elemento antigo, através doa seguinte linha de código:}
+
+```{r}
+A[2,3] <- 10
+```
+
+\textcolor{blue}{Que traz como resultado a matriz:}
+
+\begin{equation*}
+A = \left(
+```{r echo=F, results="asis"}
+xtable::xtableMatharray(A)
+```
+\right).
+\end{equation*}
+
+
+c) Calcule $B=t(A)$, onde $t(\cdot)$ é o operador de transposição. Isso é, $B$ é a matriz transposta de $A$.
+
+```{r, echo = F}
+
+A <- matrix(c(13,7,8,14,5,2,3,9,10,15,16,4,6,12,1,11), ncol= 4, byrow = T)
+
+```
+
+\textcolor{blue}{No `R` podemos fácilmente computar a transposta de uma matriz através da função `t()`, da seguinte forma:}
+
+```{r}
+B <- t(A)
+```
+
+\textcolor{blue}{Que traz como resultado a matriz:}
+
+\begin{equation*}
+B = \left(
+```{r echo=F, results="asis"}
+xtable::xtableMatharray(B)
+```
+\right).
+\end{equation*}
+
+
+d) Calcule $B^{-1}$. Isso é, a matriz inversa de B usando a função apropriada do `R`.
+
+\textcolor{blue}{Para computar o inverso de uma matriz, podemos usar a função `ìnv()` do pacote `matlib`, da seguinte forma:}
+
+```{r, message = F}
+library(matlib)
+I = matlib::inv(B)
+```
+
+\textcolor{blue}{Que produz como resultado a matriz:}
+
+\begin{equation*}
+I = \left(
+```{r echo=F, results="asis"}
+xtable::xtableMatharray(I)
+```
+\right).
+\end{equation*}
+
+\textcolor{blue}{Se queremos ver o resultado em termo de números reais, nós podemos usar a função `fractions()` do pacote `MASS`, da seguinte forma:}
+
+```{r, message = F}
+library(MASS)
+MASS::fractions(matlib::inv(B))
+```
+
+\textcolor{blue}{Uma segunda alternativa para se encontrar o inverso de uma matriz é usar a função `solve()`, da seguinte forma:}
+
+```{r, results= F}
+I <- solve(B)
+```
+
+\textcolor{blue}{Que produz como resultado a matriz:}
+
+\begin{equation*}
+I = \left(
+```{r echo=F, results="asis"}
+xtable::xtableMatharray(I)
+```
+\right).
+\end{equation*}
+
+
+e) Multiplique cada elemento da matriz $A$ por 3. 
+
+\textcolor{blue}{A multiplicação de uma matriz por um escalar pode ser realizada da seguinte forma:}
+
+```{r}
+A <- 3*A
+```
+
+\textcolor{blue}{Que produz como resultado a matriz:}
+
+\begin{equation*}
+A = \left(
+```{r echo=F, results="asis"}
+xtable::xtableMatharray(A)
+```
+\right).
+\end{equation*}
+
+
+```{r, echo = F}
+
+A <- matrix(c(13,7,8,14,5,2,3,9,10,15,16,4,6,12,1,11), ncol= 4, byrow = T)
+
+```
+
+f) Calcule a soma das linhas de $A$.
+
+\textcolor{blue}{A soma das linhas de uma matriz pode ser calculada usando-se a função `rowSums()`, no caso da matriz `A` temos que: }
+
+```{r}
+rowSums(A)
+```
+\textcolor{blue}{Onde cada número representa a soma de sua linha, respectivamente.}
+
+
+## Questão 2
+
+Considere a função 
+$$
+f(x)=\frac{\left(\sqrt{x^2 + 1} + x\right)^2}{\sqrt[3]{x^6+1}}.
+$$
+
+a) Faça o gráfico de $f(x)$ no intervalo de -10 a 10. Dica: crie uma sequencia de pontos (x) de -10 a 10 usado a função `seq` e, em seguida, calcule o valor da função (y) em cada ponto. Por fim, use a função `plot(x, y)`. 
+
+\textcolor{blue}{O gráfico pode ser realizado usando a função `ggplot()`, do pacote `ggplot2`, da seguinte forma:} 
+
+```{r}
+f <- function(x){
+  
+    x = (sqrt(x^2 + 1) + x)^2/ (x^6 + 1)^(1/3) 
+    return(x)
+  
+}
+ggplot2::ggplot(data.frame(x = c(-10, 10)), aes(x = x)) + 
+                   stat_function(fun = f)
+
+```
+
+\textcolor{blue}{Uma segunda alternativa é usar as funções `seq()` e `plot()`, da seguinte forma:}
+
+```{r}
+x <- seq(-10,10, 0.01)
+y <- (sqrt(x^2 + 1) + x)^2/ (x^6 + 1)^(1/3)
+plot(x, y )
+
+```
+
+
+
+b) Qual é o valor do limite $\lim_{x \rightarrow \infty} f(x)$? 
+
+\textcolor{blue}{No gráfico, pode-se notar um padrão de convergência da função no eixo horizontal em que $y = 4$:}
+
+```{r}
+x <- seq(-10,100, 0.01)
+y <- (sqrt(x^2 + 1) + x)^2/ (x^6 + 1)^(1/3)
+plot(x, y )
+abline(h = 4, col = "red")
+
+```
+
+
+\textcolor{blue}{Outra forma de observar o mesmo padrão seria observar o comportamento de $y$ em grandes valores de $x$, da seguinte forma:} 
+
+```{r}
+
+x <- seq(-10,1000, 0.5)
+y <- (sqrt(x^2 + 1) + x)^2/ (x^6 + 1)^(1/3)
+
+
+y[which(x == 10)]
+y[which(x == 100)]
+y[which(x == 1000)]
+
+
+```
+
+\textcolor{blue}{Neste caso, a série assume cada vez valores mais próximos de $4$ quanto maior for o valor de $x$. Logo, podemos afirmar que o limite $\lim_{x \rightarrow \infty} f(x)$ tenderia a $4$.}
+
+
+c) Em que ponto do eixo das coordenadas (x) a função assume o valor $f(x) = 2$? Basta um resultado aproximado.
+
+\textcolor{blue}{Para responder esta questão, podemos diminuir a amplitude do eixo $x$, de forma a ficar mais fácil localizar o ponto em que $y = 2$.}
+
+\textcolor{blue}{No `R`, realizaremos isso alterando o primeiro e o seguindo argumento da função `seq()`, de modo que a função `plot()` apresente o eixo $x$ no intervalo entre $-1$ e $2$, da seguinte forma:}
+
+```{r}
+
+x <- seq(-1,2, by = 0.01) 
+y <- (sqrt(x^2 + 1) + x)^2/ (x^6 + 1)^(1/3)
+plot(x, y )
+abline( v = 0.35, h =2, col = "red")
+
+
+```
+
+\textcolor{blue}{Além disso, foram adicionadas linhas verticais e horizontas através da função `abline()`, cruzando os pontos $y = 2$ e $x = 0.35$. Ao fazer isso, percebemos que, no ponto em que $y = 2$, $x$ assume o valor de aproximadamente $0,35$.}  
+
