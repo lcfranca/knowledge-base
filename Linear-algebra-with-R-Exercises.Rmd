@@ -1,0 +1,58 @@
+---
+title: "Lista de exercícios 2"
+author: "Guilherme Rodrigues"
+date: "22 de fevereiro de 2022"
+output: pdf_document
+---
+
+
+# Usando o R como calculadora
+
+```{r eval=F, echo=F, message=FALSE, warning=FALSE}
+# Carregando os pacotes necessários
+if (!require("pacman")) install.packages("pacman")
+pacman::p_load("tinytex", "tidyverse", "xtable", "knitr")
+```
+
+Neste trabalho estamos interessados utilizar o `R` para realizar operações algébricas.
+
+
+## Questão 1
+
+Considere a matriz
+\begin{equation*}
+A = \left(
+```{r echo=F, results="asis"}
+x <- matrix(sample(16, 16, replace=F), 4 ,4)
+xtable::xtableMatharray(x)
+```
+\right).
+\end{equation*}
+
+a) Use a função `matrix` do `R` para criar um objeto R contendo a matriz $A$.
+
+b) Substitua o elemento $A_{2, 3}$ de $A$ por 10.
+
+c) Calcule $B=t(A)$, onde $t(\cdot)$ é o operador de transposição. Isso é, $B$ é a matriz transposta de $A$.
+
+d) Calcule $B^{-1}$. Isso é, a matriz inversa de B usando a função apropriada do `R`.
+
+e) Multiplique cada elemento da matriz $A$ por 3. 
+
+f) Calcule a soma das linas de $A$.
+
+Obs.: Veja o código Markdown usado para criar este pdf para saber como imprimir matrizes no arquivo pdf.
+
+## Questão 2
+
+Considere a função 
+$$
+f(x)=\frac{\left(\sqrt{x^2 + 1} + x\right)^2}{\sqrt[3]{x^6+1}}.
+$$
+
+a) Faça o gráfico de $f(x)$ no intervalo de -10 a 10. Dica: crie uma sequencia de pontos (x) de -10 a 10 usado a função `seq` e, em seguida, calcule o valor da função (y) em cada ponto. Por fim, use a função `plot(x, y)`. 
+
+
+b) Qual é o valor do limite $\lim_{x \rightarrow \infty} f(x)$? 
+
+c) Em que ponto do eixo das coordenadas (x) a função assume o valor $f(x) = 2$? Basta um resultado aproximado.
