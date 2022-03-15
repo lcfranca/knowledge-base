@@ -1,0 +1,179 @@
+---
+title: "Lista 3- Subsetting"
+author: "Lucas C. França"
+date: "`r Sys.Date()`"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(quantreg)
+```
+
+
+#
+\textcolor{blue}{Instale e carregue o pacote quantreg e, em seguida, execute o comando data(Mammals) para permitir a utilização do banco de dados Mammals.}
+
+```{r}
+data("Mammals")
+```
+
+
+## Questão 1
+
+\textcolor{blue}{Com base nos dados contidos em Mammals, responda os itens a seguir.}
+
+\textcolor{blue}{a) Descreva o conteúdo do banco de dados Mammals.}
+
+
+Abaixo uma prévia deste conjunto de dados e sua estrutura:
+
+```{r}
+head(Mammals)
+```
+
+```{r}
+str(Mammals)
+```
+
+O conjunto de dados contém 107 observações, representando espécies de mamíferos, e 4 variáveis, representando a velocidade máxima de corrida, massa corporal e dois grupos de especial interesse, "hoppers" que representa animais saltitantes, como cangurus, e "specials" tal como a preguiça e o hipopótamo, cujos estilos de vida não têm a velocidade como fator importante. 
+
+### Dicionário de dados: 
+
+|Variável  |  Definição| Key|
+|:-----|:--------------|-----------:|
+|Weight    |Peso em kg |  |
+|Speed     |Velocidade máxima de corrida |   |
+|Hoppers   |Se o animal é saltitante |   TRUE = Sim, FALSE = Não|
+|Specials  |Animais com estilos de vida onde a velocidade não é um fator importante |  TRUE = Sim, FALSE = Não| 
+
+Abaixo atributos de cada variável: 
+
+```{r}
+summary(Mammals)
+```
+
+
+
+\textcolor{blue}{b) Qual é a maior velocidade dos mamíferos apresentados?}
+
+
+Para encontrar a amplitude de um conjunto de dados, podemos usar a função `range()`, que retornará o valor mínimo e máximo, respectivamente, da seguinte forma:  
+
+```{r}
+range(Mammals$speed)
+```
+
+
+Para encontrar somente o valor máximo, podemos usar a função `max()`: 
+```{r}
+max(Mammals$speed)
+```
+Já para retornar a observação em que o valor máximo aparece, podemos usar a seguinte linha de código: 
+
+```{r}
+Mammals[Mammals$speed == max(Mammals$speed),]
+```
+
+Como retornado pelas funções, a maior velocidade apresentada é de $110$, pelo mamífero de n° $53$. 
+
+\textcolor{blue}{c) Qual é o peso do mamífero mais veloz?}
+
+Como já encontrado na questão anterior, o mamífero mais rápido é o de n° $53$, cujo o peso é de $55$.
+
+Uma forma alternativa de se encontrar o mesmo resultado é através da função `by()`, que retornará um `head()`(como segundo argumento), em que a condição lógica(como primeiro argumento) for verdadeira e outro em que ela for falsa. 
+
+```{r}
+by(Mammals, Mammals$speed == max(Mammals$speed), head)
+```
+
+Como retornado pela função, somente o animal de n. $53$ tem como condição verdadeira a velocidade máxima. 
+
+\textcolor{blue}{d) Qual é a velocidade do mamífero mais pesado?}
+
+De forma análoga, podemos retornar o mamífero mais pesado através das duas seguintes alternativas: 
+
+```{r}
+Mammals[Mammals$weight == max(Mammals$weight),]
+```
+
+
+```{r}
+by(Mammals, Mammals$weight == max(Mammals$weight), head)
+```
+
+Ambas retornam o mamífero de n° $1$, cuja velocidade é de $35$. 
+
+\textcolor{blue}{e) Tem alguma velocidade não disponível (NA)?}
+
+Podemos checar se uma variável é não disponível(NA), através da função `ìs.na()`, que retornará um valor verdadeiro ou falso. Ao adicionarmos como linha ao conjunto de dados, retornaremos o subconjunto em que a condição lógica for verdadeira:
+
+```{r}
+Mammals[is.na(Mammals$speed) == TRUE, ]
+```
+
+Em que nenhuma velocidade não disponível foi encontrada. 
+
+\textcolor{blue}{f) Qual é a velocidade mínima dos mamíferos “não especiais”?**}
+
+Podemos encontrar o valor mínimo de uma variável em um conjunto de dados através da função `min()`, que receberá como argumento o subconjunto da variável `speed` em que a variável `specials` for falsa, da seguinte forma:
+
+```{r}
+min(Mammals$speed[which( Mammals$specials == F)])
+```
+Em que o valor retornado foi de $2,4$. 
+
+\textcolor{blue}{g) Quantos mamíferos especiais ou saltadores o banco de dados contém?}
+
+Podemos encontrar o número de ocorrências em que a condição lógica for verdadeira através da função `table()`, que receberá " em que o animal é saltador **ou** especial" como argumento.
+
+```{r}
+table(Mammals$hoppers == T | Mammals$specials == T)
+```
+Em que valor retornado de ocorrências verdadeiras é de $21$. 
+
+Uma solução alternativa é usar a função `count()` do pacote `dplyr`, da seguinte forma:  
+
+```{r, warning=FALSE, message=F}
+library("dplyr")
+Mammals %>%
+        dplyr::count(Mammals$hoppers == T | Mammals$specials == T)
+```
+Em que o resultado de $21$ foi igualmente encontrado. 
+
+\textcolor{blue}{h) Qual é a velocidade média dos mamíferos do item g)?}
+
+
+Podemos encontrar a média de um conjunto de dados através da função `mean()`, que receberá como argumento o subconjunto `speed` em que `hoppers` ou `specials` for verdadeiro. 
+
+```{r}
+mean(Mammals$speed[which(Mammals$hoppers == T | Mammals$specials == T)])
+```
+Que encontrou como média o valor de $35.81905$. 
+
+\textcolor{blue}{i) Tem algum mamífero com o mesmo peso do seu? Quais são?**}
+
+Podemos encontrar uma ocorrência em um conjunto de dados adicionando a condição lógica na função `which()`, da seguinte forma: 
+
+```{r}
+which(Mammals$weight == 60)
+```
+Que encontrou o mamífero de número $52$ como tendo o mesmo peso que o meu. 
+
+\textcolor{blue}{j) Altere o peso do mamífero encontrado em i) para NA. (se não encontrou nenhum, substitua por NA o peso do mamífero mais leve).}
+
+Podemos sobrescrever o valor antigo como `NA` da seguinte forma:
+
+```{r}
+Mammals$weight[Mammals$weight == 60] <- NA
+```
+
+Para checarmos se o valor foi devidamente alterado, basta retornar a posição do conjunto de dados: 
+
+```{r}
+Mammals[52,]
+```
+
+Que recebeu `NA` como novo valor para o peso. 
