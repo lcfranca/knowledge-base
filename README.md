@@ -21,14 +21,23 @@ Este roteiro busca oferecer um percurso estruturado, epistemologicamente rigoros
 - Kurt Gödel, *On Formally Undecidable Propositions* (1931).
 - Alonzo Church, *A Note on the Entscheidungsproblem* (1936).
 - Alan Turing, *On Computable Numbers* (1936).
+- Ernst Zermelo, Untersuchungen über die Grundlagen der Mengenlehre (1908).
+- Ludwig Wittgenstein, *Tractatus Logico-Philosophicus* (1921).
 
 **Leitura Crítica:**
 - Donald MacKenzie, *Mechanizing Proof: Computing, Risk, and Trust* (2001).
+- Imre Lakatos, Proofs and Refutations (1976).
+- Jean-Yves Girard, The Blind Spot: Lectures on Logic (2011).
 
 **Práticas Avançadas:**
 - Implementação visual de máquinas de Turing.
 - Comparativo entre Cálculo Lambda e Máquina de Turing.
 - Simulação de paradoxos de Gödel com linguagem de metarreflexão.
+- Paradoxo de Russell em Teoria de Tipos Dependentes
+     - Formalizar λx.¬(xx) em Coq e analisar falha de terminação.
+- Decidibilidade do Entscheidungsproblem em Lean4
+- Máquina de Turing Universal com Autorreferência
+   - Codificar uma MT que simule sua própria negação (Gödelização explícita).
 
 ---
 
@@ -43,10 +52,16 @@ Este roteiro busca oferecer um percurso estruturado, epistemologicamente rigoros
 - Von Neumann, *First Draft of a Report on the EDVAC* (1945).
 - Alan Turing, *Proposal for the ACE* (1945).
 - Wiener, *Cybernetics* (1948).
+- Wiener, The Human Use of Human Beings (1950).
+- Maurice Wilkes, The Best Way to Design an Automatic Calculating Machine (1951).
 - Engelbart, *Augmenting Human Intellect* (1962).
+- Claude Shannon, A Symbolic Analysis of Relay and Switching Circuits (1938).
 
 **Práticas Avançadas:**
 - Simulação de ALUs com Logisim.
+- Projeto de ULA com Microcódigo em VHDL
+- Emulação do Manchester Baby com CRT Memory
+- Análise Termodinâmica de Portas NAND
 - Emulação de ciclo Harvard com microprogramação.
 - Desenvolvimento de simuladores de memória e controle de fluxo.
 
@@ -74,12 +89,19 @@ Este roteiro busca oferecer um percurso estruturado, epistemologicamente rigoros
 - Edsger Dijkstra, *Go To Statement Considered Harmful* (1968).
 - John Backus, *Can Programming Be Liberated...* (1978).
 - Winograd & Flores, *Understanding Computers and Cognition* (1986).
+- Noam Chomsky, Three Models for the Description of Language (1956).
+- Dana Scott, Data Types as Lattices (1976).
+- Robin Milner, A Theory of Type Polymorphism in Programming (1978).
+- Gilles Kahn, The Semantics of Simple Parallel Processes (1974).
 
 **Projetos Profundos:**
 - Implementação de interpretadores para Cálculo Lambda.
 - Comparativo OOP em Smalltalk vs. JS.
 - Desenvolvimento de Prolog e resolução de teoremas.
 - Simulação de múltiplos paradigmas resolvendo o mesmo problema.
+- Compilador para λ-Cálculo com Continuations
+- Semântica Denotacional para Concorrência
+- Análise de Efeitos Colaterais em Monads
 
 ---
 
@@ -94,11 +116,17 @@ Este roteiro busca oferecer um percurso estruturado, epistemologicamente rigoros
 - Cormen, Leiserson, Rivest, Stein, *Introduction to Algorithms* (CLRS).
 - Stephen Cook, *The Complexity of Theorem-Proving Procedures* (1971).
 - Papadimitriou, *Computational Complexity*.
+- Andrey Kolmogorov, Three Approaches to Information (1965).
+- Michael Sipser, The History and Status of the P vs NP Problem (1992).
+- Alexander Razborov, Lower Bounds for Monotone Complexity (1985).
 
 **Práticas Avançadas:**
 - Análise comparativa de algoritmos com benchmarking real.
 - Implementação de algoritmos genéticos.
 - Simulação de problemas NP-completos.
+- Redução Levin-Cook para Geometria Algébrica
+- Análise de Entropia em Algoritmos de Ordenação
+- Algoritmos Genéticos com Teoria de Schemata
 
 ---
 
@@ -113,11 +141,17 @@ Este roteiro busca oferecer um percurso estruturado, epistemologicamente rigoros
 - Diffie & Hellman, *New Directions in Cryptography* (1976).
 - Bruce Schneier, *Applied Cryptography*.
 - Lawrence Lessig, *Code and Other Laws of Cyberspace*.
+- Michael Fischer, The Consensus Problem in Unreliable Distributed Systems (1983).
+- Cynthia Dwork, Pricing via Processing or Combatting Junk Mail (1992).
+- Martín Abadi, Explicit Communication Revisited (1999).
 
 **Laboratórios:**
 - Simulação de tempos lógicos de Lamport.
 - Blockchain com Prova de Trabalho.
 - Implementação segura de protocolos (TLS, autenticação).
+- Prova do FLP em TLA+
+- Criptografia Lattice-Based em Python
+- Análise de CAP Theorem em Databases
 
 ---
 
@@ -132,12 +166,17 @@ Este roteiro busca oferecer um percurso estruturado, epistemologicamente rigoros
 - Roy Fielding, *Architectural Styles and the Design of Network-based Software Architectures* (2000).
 - Jeff Dean, *Designs, Lessons and Advice from Building Large-Scale Distributed Systems*.
 - Martin Fowler, *Patterns of Enterprise Application Architecture*.
+- Fred Brooks, No Silver Bullet (1986).
+- Leslie Lamport, How to Make a Multiprocessor Computer That Correctly Executes Multiprocess Programs (1979).
+- Gray & Reuter, Transaction Processing: Concepts and Techniques (1993).
 
 **Práticas Profundas:**
 - Pipeline CI/CD completo (GitHub Actions, Docker).
 - MapReduce distribuído.
 - Arquitetura de microserviços com observabilidade.
-
+- Verificação Formal de CRDTs em Isabelle/HOL
+   - Implementar session types em Go para garantias de protocolo.
+- Análise Termodinâmica de Data Centers
 ---
 
 ## Estágio 7: Inteligência Artificial e Computação Cognitiva (2000s–2020s)
