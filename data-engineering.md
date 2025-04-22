@@ -33,6 +33,8 @@
 ### **Estudos:**
 - Modelagem ER (Chen, Peter Pin-Shan. "The entity-relationship model—toward a unified view of data." ACM Transactions on Database Systems, 1976).
 - Teoria da Normalização (Codd, Boyce, Date).
+- Fowler, Martin. Evolutionary Database Design (martinfowler.com, 2003).
+- Abiteboul, Serge et al. Foundations of Databases (1995).
 - Modelos multidimensionais e Data Warehousing:
   - Inmon, W. H. *Building the Data Warehouse*. Wiley, 1996.
   - Kimball, Ralph et al. *The Data Warehouse Toolkit*. Wiley, 1996.
@@ -73,6 +75,7 @@
 ### **Estudos:**
 - Arquiteturas Lambda (Marz), Kappa (Kreps), Delta Lake.
 - Frameworks: Apache Spark (Zaharia et al., 2016), Beam, Flink.
+- Apache Flink: Stream and Batch Processing in a Single Engine (IEEE Data Eng. Bull., 2015).
 - Artigos:
   - Marz, Nathan. *Big Data: Principles and best practices of scalable real-time data systems*.
   - Zaharia, Matei et al. "Apache Spark: a unified engine for big data processing." Communications of the ACM, 2016.
@@ -82,6 +85,8 @@
 - Pipeline híbrido com Airflow + Spark (ETL batch e stream).
 - Implementação de arquitetura Lambda com processamento em tempo real.
 - Gerenciamento de estado com Flink.
+- Pipeline com Exactly-Once Semantics usando Flink + Kafka.
+- Gerenciamento de metadados em escala com Apache Iceberg.
 
 ---
 
@@ -97,11 +102,15 @@
   - Kleppmann, Martin. *Designing Data-Intensive Applications*. O'Reilly, 2017.
   - Fowler, Martin. *Event Sourcing* (martinfowler.com).
   - Young, Greg. "CQRS and Event Sourcing" (2010).
+  - Kafka: A Distributed Messaging System (Netflix Tech Blog, 2011).
+  - *Out-of-Order Processing*: Akidau et al. (VLDB, 2013).
 
 ### **Práticas Avançadas:**
 - Criação de pipeline com Kafka + Debezium + PostgreSQL (CDC).
 - Implementação de Event Sourcing completo com materialização de leitura.
 - Análise da latência de ponta a ponta em arquitetura baseada em eventos.
+- CDC com Debezium + Avro Schema Registry + Quarkus.
+- Simulação de falhas em sistemas event-driven (Chaos Engineering com Gremlin).
 
 ---
 
@@ -116,11 +125,16 @@
 - Artigos:
   - Monte Carlo, *Data Observability Fundamentals*.
   - DataKitchen, *The DataOps Cookbook*.
+  - Data Observability: The Missing Piece (Monte Carlo, 2021).
+  - Marquez: A Metadata Management System (Airbnb Eng. Blog, 2020).
+  - Great Expectations: Pipeline Testing (Open Source, 2020).
 
 ### **Práticas Avançadas:**
 - Integração de testes de dados em pipelines CI/CD.
 - Implementação de observabilidade em tempo real com Superset + DataHub.
 - Catálogo automatizado com OpenMetadata.
+- - CI/CD para dados com dbt + Great Expectations + Dagster.
+- Análise de lineage com OpenLineage + Spark Listener.
 
 ---
 
@@ -133,12 +147,18 @@
   - Berners-Lee, Tim. *The Semantic Web*. Scientific American, 2001.
   - Gruber, Thomas R. "A translation approach to portable ontology specifications." Knowledge Acquisition, 1993.
 - Knowledge Graphs: Google, DBpedia, YAGO.
+- Enterprise Knowledge Graphs: Hogan, A. et al. (ACM CSUR, 2021).
+- Neo4j: Graph Algorithms (O’Reilly, 2019).
 - Integração de ML com dados: Feature Store, MLflow.
+- Feature Stores for ML: Feast Framework (Gojek, 2020).
 
 ### **Práticas Avançadas:**
 - Construção de um grafo de conhecimento com integração semântica RDF.
 - Deploy de pipeline de machine learning com dados em tempo real.
 - Análise semântica de entidades em base heterogênea.
+- Construção de Grafo de Conhecimento com RDFox + Ontop.
+- Feature Engineering em tempo real com Tecton + Flink.
+
 
 ---
 
@@ -149,8 +169,12 @@
 ### **Estudos:**
 - Data Mesh:
   - Dehghani, Zhamak. *Data Mesh: Delivering Data-Driven Value at Scale*. O'Reilly, 2022.
+  - Dehghani, Zhamak. Data Mesh Principles (2022).
+  - Uber’s Databook: Metadata Management at Scale (2021).
 - Privacidade Diferencial:
   - Dwork, Cynthia. "Differential Privacy." ICALP, 2006.
+  - Dwork, Cynthia. The Algorithmic Foundations of Differential Privacy (2014).
+  - *Zero-Knowledge Proofs*: zk-SNARKs in Big Data (Zcash, 2016).
 - Blockchain e integridade:
   - Wood, Gavin. *Ethereum: A Secure Decentralised Generalised Transaction Ledger*. 2014.
 - Web3 e armazenamento descentralizado (IPFS, Filecoin).
@@ -161,6 +185,16 @@
 - Aplicação de técnicas de privacidade diferencial em dados sensíveis.
 - Pipeline com armazenamento distribuído e verificação via blockchain (Ex: IPFS + Hyperledger).
 - Treinamento federado de modelo com dados privados descentralizados.
+- Implementação de Data Product com Open Data Mesh (Kafka + Airflow + S3).
+- Anonimização via Privacidade Diferencial (Google’s PipelineDP).
+
+## Tendências de Pesquisa (2023+)
+- Database Theory:
+  - Formal Verification of Database Systems (CIDR, 2023).
+- AI-Native Databases:
+  - PGML: Machine Learning in PostgreSQL (SIGMOD, 2022).
+- Quantum Data Engineering:
+  - Quantum Algorithms for Database Search (IBM Research, 2023).
 
 
 
