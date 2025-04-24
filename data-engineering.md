@@ -32,14 +32,22 @@
 
 ### **Estudos:**
 - Modelagem ER (Chen, Peter Pin-Shan. "The entity-relationship model—toward a unified view of data." ACM Transactions on Database Systems, 1976).
+- Borgida, Alexander; Batory, Don et al. "Ontology-Based Data Access and Integration."
+- Lenzerini, Maurizio. "Data integration: A theoretical perspective." PODS 2002. 
 - Teoria da Normalização (Codd, Boyce, Date).
+- Libkin, Leonid. "Incomplete Information in Relational Databases." Morgan & Claypool, 2014.
+- Arenas, Marcelo; Libkin, Leonid. "An Information-Theoretic Approach to Normal Forms for Relational and Document Databases." PODS 2018.
 - Fowler, Martin. Evolutionary Database Design (martinfowler.com, 2003).
+- Ambler, Scott W. "Refactoring Databases." Addison-Wesley, 2006.
 - Abiteboul, Serge et al. Foundations of Databases (1995).
+- Libkin, Leonid. "Elements of Finite Model Theory." Springer, 2004.
 - Modelos multidimensionais e Data Warehousing:
   - Inmon, W. H. *Building the Data Warehouse*. Wiley, 1996.
   - Kimball, Ralph et al. *The Data Warehouse Toolkit*. Wiley, 1996.
 - Lógica de banco de dados:
   - Ullman, Jeffrey D. *Principles of Database and Knowledge-Base Systems*. Computer Science Press, 1988.
+  - Suciu, Dan et al. "Probabilistic Databases." Morgan & Claypool, 2011.
+  - Libkin, Leonid. "Certain Answers as Objects and Knowledge." PODS 2020.
 
 ### **Práticas Avançadas:**
 - Criação de data warehouse relacional e dimensional com transformação ETL completa.
